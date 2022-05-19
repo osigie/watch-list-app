@@ -1,4 +1,11 @@
-const resultCard = ({ movie }) => {
+import { useAppContext } from "./context/GlobalState";
+
+const ResultCard = ({ movie }) => {
+  const { addMovieToWatchList, watchList, watched } = useAppContext();
+  const alreadyWatched = watchList.find((each) => each.id === movie.id);
+  const alreadyInWatched = watched.find((each) => each.id === movie.id);
+
+  const check = alreadyWatched ? true : alreadyInWatched ? true : false;
   return (
     <div className="result-card">
       <div className="poster-wrapper">
@@ -20,11 +27,17 @@ const resultCard = ({ movie }) => {
           </h4>
         </div>
         <div className="controls">
-          <button className="btn">Add to watchlist</button>
+          <button
+            className="btn"
+            onClick={() => addMovieToWatchList(movie)}
+            disabled={!check}
+          >
+            Add to watchlist
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default resultCard;
+export default ResultCard;
