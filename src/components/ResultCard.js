@@ -5,7 +5,8 @@ const ResultCard = ({ movie }) => {
   const alreadyWatched = watchList.find((each) => each.id === movie.id);
   const alreadyInWatched = watched.find((each) => each.id === movie.id);
 
-  const check = alreadyWatched ? true : alreadyInWatched ? true : false;
+  // const check = alreadyWatched ? true : false;
+  const check = alreadyWatched || alreadyInWatched ? true : false;
   return (
     <div className="result-card">
       <div className="poster-wrapper">
@@ -30,7 +31,7 @@ const ResultCard = ({ movie }) => {
           <button
             className="btn"
             onClick={() => addMovieToWatchList(movie)}
-            disabled={!check}
+            disabled={check}
           >
             Add to watchlist
           </button>

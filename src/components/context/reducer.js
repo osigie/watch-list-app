@@ -8,7 +8,7 @@ export const reducer = (state, action) => {
     case "ADD_MOVIE_TO_WATCH":
       return {
         ...state,
-        watchedList: state.watchList.filter((movie) => {
+        watchList: state.watchList.filter((movie) => {
           return movie.id !== action.payload.movie.id;
         }),
         watched: [action.payload.movie, ...state.watched],
